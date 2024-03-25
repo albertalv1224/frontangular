@@ -1,0 +1,25 @@
+<div class="container" >
+    <div class="form-container">
+      <p>Registrar nuevo usuario</p>
+      <form #userForm="ngForm" (ngSubmit)="enviarFormulario(userForm.value)">
+        <input name="username" ngModel placeholder="Correo"><br>
+        <input name="firstname" ngModel placeholder="Nombre"><br>
+        <input name="lastname" ngModel placeholder="Apellido"><br>
+        <input name="country" ngModel placeholder="País"><br>
+        <input type="password" name="password" ngModel placeholder="Contraseña"><br>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+    <div class="form-container">
+      <p>Registrar nueva compañía</p>
+      <form #companyForm="ngForm" (ngSubmit)="enviarFormulario(companyForm.value)">
+        <input name="companyname" ngModel placeholder="Razón Social"><br>
+        <input name="country" ngModel placeholder="RFC"><br>
+        <input name="contactname" ngModel placeholder="Titular"><br>
+        <input name="email" ngModel placeholder="Correo Electrónico"><br>
+        <input type="password" name="password" ngModel placeholder="Contraseña"><br>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+  

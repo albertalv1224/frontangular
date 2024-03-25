@@ -1,0 +1,41 @@
+.form-container {
+    max-width: 10cm;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 35%;
+  }
+  
+  .gradient-divider {
+    background: linear-gradient(to right, red, black);
+    height: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  

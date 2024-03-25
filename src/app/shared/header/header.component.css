@@ -1,0 +1,26 @@
+/* Estilos para los elementos del menú */
+.p-x-12 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .m-t-12 {
+    margin-top: 12px;
+  }
+  
+  /* Estilos específicos para los botones */
+  .nav-link.active {
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link.active:hover {
+    background-color: darkred;
+  }
+  

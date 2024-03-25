@@ -1,0 +1,36 @@
+<button (click)="obtenerDatos()">Obtener Datos</button>
+<table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Errores</th>
+        <!-- Añade más columnas según sea necesario -->
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let factura of datos | keyvalue">
+        <tr>
+          <td>{{ factura.key }}</td>
+          <td>
+            <ng-container *ngFor="let campo of camposNoValidos">
+              <span *ngIf="factura.value[campo] !== 'Válido'">
+                <ng-container *ngIf="isObject(factura.value[campo]); else value">
+                  {{ campo }}:
+                  <ng-container *ngFor="let subCampo of factura.value[campo] | keyvalue">
+                    <span *ngIf="subCampo.value !== 'Válido'">{{ subCampo.key }} - {{ subCampo.value }}</span><br>
+                  </ng-container>
+                </ng-container>
+                <ng-template #value>{{ campo }}: {{ factura.value[campo] }}</ng-template>
+                <br>
+              </span>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  
+  
+  
+
+  

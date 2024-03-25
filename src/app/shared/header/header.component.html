@@ -1,0 +1,53 @@
+<mat-toolbar class="topbar">
+  <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+
+  <!-- Notification Dropdown -->
+  <mat-card-title class="m-b-0" style="margin-right: 350px;" *ngIf="userLoginOn">Usuario</mat-card-title>
+
+  <!-- Elemento "Inicio" -->
+  <div class="p-x-12 m-t-12" *ngIf="userLoginOn">
+    <a class="nav-link active" routerLink="/" color="primary">Inicio</a>
+  </div>
+
+  <!-- Elementos condicionales dependiendo del estado de login -->
+  <ng-container *ngIf="userLoginOn">
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/validar" routerLink="/inicio">Validar CFDIs</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/inicio">Realizar conciliaciones</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/inicio">Generar CFDIs</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" (click)="logoutUser()" routerLink="/">Cerrar Sesión</a>
+    </div>
+  </ng-container>
+
+  <!-- Elementos del administrador -->
+  <ng-container *ngIf="adminLoginOn">
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/register">Agregar nuevos usuarios</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/validar">Pagos</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/validar">Estadísticas</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" (click)="logoutAdmin()" routerLink="/">Cerrar Sesión</a>
+    </div>
+  </ng-container>
+
+ 
+  <div class="p-x-12 m-t-12" *ngIf="!userLoginOn && !adminLoginOn">
+    <a class="nav-link active" routerLink="/inicio">Iniciar Sesión</a>
+  </div>
+
+  <span class="flex-1-auto"></span>
+</mat-toolbar>
+
+
+  
