@@ -29,6 +29,17 @@ export class LoginService {
     );
   }
 
+  obtenerRol(credentials: LoginRequest): Observable<any>{
+    return this.http.post<any>(environment.urlHost + 'auth/obtenerRol', credentials).pipe(
+      tap((userData) => {
+        sessionStorage.setItem('role', userData.role);
+        this.currentUserData.next(userData.role);
+      
+      }),
+      map((userData) => userData.role),
+      catchError(this.handleError))
+  }
+
   logout(): void {
     sessionStorage.removeItem('token');
     this.currentUserLoginOn.next(false);

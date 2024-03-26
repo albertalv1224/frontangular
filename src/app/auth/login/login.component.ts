@@ -29,26 +29,38 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls.password;
   }
 
-  login(){
-    if(this.loginForm.valid){
-      this.loginError="";
+  login() {
+    if (this.loginForm.valid) {
+      this.loginError = "";
       this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (userData) => {
           console.log(userData);
+        
+          this.loginService.obtenerRol(this.loginForm.value as LoginRequest).subscribe({
+            next: (role) => {
+              console.log(role);
+              if (role === 'USER') {
+                this.router.navigateByUrl('/dashboard');
+              } else {
+                this.router.navigateByUrl('/register');
+              }
+            },
+            error: (errorData) => {
+              console.error(errorData);
+              this.loginError = errorData;
+            }
+          });
         },
         error: (errorData) => {
           console.error(errorData);
-          this.loginError=errorData;
+          this.loginError = errorData;
         },
         complete: () => {
           console.info("Login completo");
-          this.router.navigateByUrl('/dashboard');
           this.loginForm.reset();
         }
-      })
-
-    }
-    else{
+      });
+    } else {
       this.loginForm.markAllAsTouched();
       alert("Error al ingresar los datos.");
     }

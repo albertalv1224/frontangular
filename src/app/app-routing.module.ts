@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'dashboard', component: AppDashboardComponent },
   {path: 'validar', component: MenuValidacionComponent, canActivate: [AuthenticatedGuard]},
   {path: 'validarCfdi', component: ValidarCfdiComponent, canActivate: [AuthenticatedGuard]},
-  {path: 'loginAdmin', component: LoginAdminComponent},
-  {path: 'register', component: RegisterComponent, canActivate: [AuthenticatedAdminGuard]},
+  {path: 'loginAdmin', component: LoginAdminComponent}, 
+  {path: 'register', component: RegisterComponent}, // , canActivate: [AuthenticatedAdminGuard]
   {path: '' , component: IndexComponent}
 
 ];
