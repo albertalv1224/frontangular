@@ -32,19 +32,19 @@ import { UserService } from './services/user/user.service';
 import { LoginService } from './services/auth/login.service';
 import { JwtInterceptor } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
-import { MenuValidacionComponent } from './menuValidacion/menuValidacion.component';
+
 import { AppDashboardComponent } from './dashboard/dashboardo.component';
 import { ValidarCfdiComponent } from './validarCfdi/validarCfdi.component';
 import { ServicicioSpring } from './servicio-spring';
-import { LoginAdminComponent } from './auth/loginAdmin/loginAdmin.component';
-import { LoginAdminService } from './services/auth/loginAdmin.service';
+
+
 import { RegisterComponent } from './auth/register/register.component';
 import { IndexComponent } from './principal/index.component';
 import { SaludarComponent } from './prueba/saludar.component';
 
 @NgModule({
   declarations: [
-    SaludarComponent,
+ 
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -52,14 +52,14 @@ import { SaludarComponent } from './prueba/saludar.component';
     LoginComponent,
     NavComponent,
     PersonalDetailsComponent,
-    MenuValidacionComponent,
+
     FullComponent,
     BlankComponent,
     SidebarComponent,
     BrandingComponent,
     AppNavItemComponent,
     ValidarCfdiComponent,
-    LoginAdminComponent,
+
     RegisterComponent,
     IndexComponent,
   
@@ -77,11 +77,11 @@ import { SaludarComponent } from './prueba/saludar.component';
    
   ],
   providers: [
-    SaludarComponent,
+   
     UserService,
     LoginService,
     ServicicioSpring,
-    LoginAdminService,
+  
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },

@@ -25,26 +25,9 @@
     </div>
   </ng-container>
 
-  <!-- Elementos del administrador -->
-  <ng-container *ngIf="adminLoginOn">
-    <div class="p-x-12 m-t-12">
-      <a class="nav-link active" routerLink="/register">Agregar nuevos usuarios</a>
-    </div>
-    <div class="p-x-12 m-t-12">
-      <a class="nav-link active" routerLink="/validar">Pagos</a>
-    </div>
-    <div class="p-x-12 m-t-12">
-      <a class="nav-link active" routerLink="/validar">Estadísticas</a>
-    </div>
-    <div class="p-x-12 m-t-12">
-      <a class="nav-link active" (click)="logoutAdmin()" routerLink="/">Cerrar Sesión</a>
-    </div>
-  </ng-container>
+  
 
  
-  <div class="p-x-12 m-t-12" *ngIf="!userLoginOn && !adminLoginOn">
-    <a class="nav-link active" routerLink="/inicio">Iniciar Sesión</a>
-  </div>
 
   <span class="flex-1-auto"></span>
 </mat-toolbar>

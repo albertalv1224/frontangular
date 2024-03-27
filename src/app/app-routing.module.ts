@@ -4,10 +4,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthenticatedGuard } from './services/auth/authenticated.guard';
 import { AppDashboardComponent} from './dashboard/dashboardo.component';
-import { MenuValidacionComponent } from './menuValidacion/menuValidacion.component';
 import { ValidarCfdiComponent } from './validarCfdi/validarCfdi.component';
-import { LoginAdminComponent } from './auth/loginAdmin/loginAdmin.component';
-import { AuthenticatedAdminGuard } from './services/auth/athenticatedAdmin.guard';
+
+
 import { RegisterComponent } from './auth/register/register.component';
 import { IndexComponent } from './principal/index.component';
 import { SaludarComponent } from './prueba/saludar.component';
@@ -16,10 +15,10 @@ const routes: Routes = [
   { path: 'dashboard', component: AppDashboardComponent, canActivate: [AuthenticatedGuard] },
   {path:'iniciar-sesion',component:LoginComponent},
   { path: 'dashboard', component: AppDashboardComponent },
-  {path: 'validar', component: MenuValidacionComponent}, //, canActivate: [AuthenticatedGuard]
+
   {path: 'validarCfdi', component: ValidarCfdiComponent, canActivate: [AuthenticatedGuard]},
-  {path: 'loginAdmin', component: LoginAdminComponent}, 
-  {path: 'register', component: RegisterComponent}, // , canActivate: [AuthenticatedAdminGuard]
+
+  {path: 'register', component: RegisterComponent},
   {path: '' , component: IndexComponent},
   {path: 'saludar', component: SaludarComponent},
 
