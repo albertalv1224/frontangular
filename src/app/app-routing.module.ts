@@ -10,16 +10,18 @@ import { LoginAdminComponent } from './auth/loginAdmin/loginAdmin.component';
 import { AuthenticatedAdminGuard } from './services/auth/athenticatedAdmin.guard';
 import { RegisterComponent } from './auth/register/register.component';
 import { IndexComponent } from './principal/index.component';
+import { SaludarComponent } from './prueba/saludar.component';
 const routes: Routes = [
   //{path:'',redirectTo:'/index', pathMatch:'full'},
   { path: 'dashboard', component: AppDashboardComponent, canActivate: [AuthenticatedGuard] },
   {path:'iniciar-sesion',component:LoginComponent},
   { path: 'dashboard', component: AppDashboardComponent },
-  {path: 'validar', component: MenuValidacionComponent, canActivate: [AuthenticatedGuard]},
+  {path: 'validar', component: MenuValidacionComponent}, //, canActivate: [AuthenticatedGuard]
   {path: 'validarCfdi', component: ValidarCfdiComponent, canActivate: [AuthenticatedGuard]},
   {path: 'loginAdmin', component: LoginAdminComponent}, 
   {path: 'register', component: RegisterComponent}, // , canActivate: [AuthenticatedAdminGuard]
-  {path: '' , component: IndexComponent}
+  {path: '' , component: IndexComponent},
+  {path: 'saludar', component: SaludarComponent},
 
 ];
 

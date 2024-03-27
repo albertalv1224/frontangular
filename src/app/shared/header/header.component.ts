@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     this.loginAdminService.currentAdminLoginOn.subscribe((adminLoginOn) => {
       this.adminLoginOn = adminLoginOn;
     });
-  }
+  } 
 
   logoutUser() {
     this.loginService.logout();

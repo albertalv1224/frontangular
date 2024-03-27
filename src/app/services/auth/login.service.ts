@@ -11,18 +11,23 @@ export class LoginService {
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _username: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  userRole: string = '';
 
   constructor(private http: HttpClient) { 
     this.currentUserLoginOn = new BehaviorSubject<boolean>(this.isUserLoggedIn());
     this.currentUserData = new BehaviorSubject<string>(sessionStorage.getItem('token') || '');
+    this._username = new BehaviorSubject<string>(sessionStorage.getItem('username') || '');
+    this.userRole = '';
   }
-
   login(credentials: LoginRequest): Observable<any> {
     return this.http.post<any>(environment.urlHost + 'auth/login', credentials).pipe(
       tap((userData) => {
         sessionStorage.setItem('token', userData.token);
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
+        this.userRole = userData.role; 
+        console.log('Rol del usuario:', this.userRole); 
       }),
       map((userData) => userData.token),
       catchError(this.handleError)
@@ -33,12 +38,13 @@ export class LoginService {
     return this.http.post<any>(environment.urlHost + 'auth/obtenerRol', credentials).pipe(
       tap((userData) => {
         sessionStorage.setItem('role', userData.role);
-        this.currentUserData.next(userData.role);
-      
+        this.userRole = userData.role; 
       }),
       map((userData) => userData.role),
-      catchError(this.handleError))
+      catchError(this.handleError)
+    );
   }
+  
 
   logout(): void {
     sessionStorage.removeItem('token');
@@ -71,4 +77,20 @@ export class LoginService {
     return this.currentUserData.value;
   }
 
+
+  get username(): Observable<string> {
+    return this._username.asObservable();
+  }
+
+  obtenerUsername(credentials: LoginRequest): Observable<any>{
+    sessionStorage.setItem('username', credentials.username);
+    this._username.next(credentials.username);
+
+    return new Observable<string>((observer) => {
+      observer.next(credentials.username); 
+    }).pipe(
+      map((userData) => userData), 
+      catchError(this.handleError) 
+    );
+  }
 }

@@ -30,7 +30,7 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
 // Services
 import { UserService } from './services/user/user.service';
 import { LoginService } from './services/auth/login.service';
-import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
+import { JwtInterceptor } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { MenuValidacionComponent } from './menuValidacion/menuValidacion.component';
 import { AppDashboardComponent } from './dashboard/dashboardo.component';
@@ -40,9 +40,11 @@ import { LoginAdminComponent } from './auth/loginAdmin/loginAdmin.component';
 import { LoginAdminService } from './services/auth/loginAdmin.service';
 import { RegisterComponent } from './auth/register/register.component';
 import { IndexComponent } from './principal/index.component';
+import { SaludarComponent } from './prueba/saludar.component';
 
 @NgModule({
   declarations: [
+    SaludarComponent,
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -59,13 +61,14 @@ import { IndexComponent } from './principal/index.component';
     ValidarCfdiComponent,
     LoginAdminComponent,
     RegisterComponent,
-    IndexComponent
+    IndexComponent,
+  
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
@@ -74,12 +77,16 @@ import { IndexComponent } from './principal/index.component';
    
   ],
   providers: [
+    SaludarComponent,
     UserService,
     LoginService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
     ServicicioSpring,
-    LoginAdminService
+    LoginAdminService,
+
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
+    
+    
   ],
   bootstrap: [AppComponent]
 })

@@ -33,14 +33,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loginError = "";
       this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-        next: (userData) => {
-          console.log(userData);
-        
+        next: () => {
+          
           this.loginService.obtenerRol(this.loginForm.value as LoginRequest).subscribe({
-            next: (role) => {
-              console.log(role);
-              if (role === 'USER') {
-                this.router.navigateByUrl('/dashboard');
+            next: () => {
+              
+              if (this.loginService.userRole === 'USER') {
+                this.router.navigateByUrl('/saludar');
               } else {
                 this.router.navigateByUrl('/register');
               }
@@ -65,5 +64,20 @@ export class LoginComponent implements OnInit {
       alert("Error al ingresar los datos.");
     }
   }
+  
+
+  obtenerNombreUsuario(): void {
+    const credentials = this.loginForm.value as LoginRequest;
+    this.loginService.obtenerUsername(credentials).subscribe({
+      next: (username) => {
+        sessionStorage.setItem('username', username);
+      },
+      error: (errorData) => {
+        console.error(errorData);
+    
+      }
+    });
+}
+
 
 }

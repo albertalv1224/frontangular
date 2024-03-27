@@ -5,16 +5,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     templateUrl: './menuValidacion.component.html',
 })
 export class MenuValidacionComponent  {
-
+    
     constructor(private http:HttpClient){
 
     }
+
+    
    enviarPath(body:{path:String}){
-  
-       this.http.get('http://localhost:8080/validarFactura').subscribe((result)=>{
+    
+
+       this.http.get('http://localhost:8080/auth/prueba').subscribe((result)=>{
         console.log(result)
        })
-    
+   
  
    }
   }

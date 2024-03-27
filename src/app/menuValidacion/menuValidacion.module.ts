@@ -6,14 +6,14 @@ import { MenuValidacionComponent } from './menuValidacion.component';
 
 @NgModule({
   declarations: [
-    MenuValidacionComponent
+
   ],
   imports: [
     CommonModule,
-    FormsModule // Agrega FormsModule aquí
+    FormsModule 
   ],
   exports: [
-    MenuValidacionComponent // Si deseas exportar el componente para usarlo fuera de este módulo
+
   ]
 })
 export class MenuValidacionModule { }
