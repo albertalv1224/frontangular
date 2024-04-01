@@ -12,13 +12,15 @@ export class LoginService {
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _username: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  userRole: string = '';
+  userRole: number = 0;
+  rol: BehaviorSubject<number>;
 
   constructor(private http: HttpClient) { 
     this.currentUserLoginOn = new BehaviorSubject<boolean>(this.isUserLoggedIn());
     this.currentUserData = new BehaviorSubject<string>(sessionStorage.getItem('token') || '');
     this._username = new BehaviorSubject<string>(sessionStorage.getItem('username') || '');
-    this.userRole = '';
+    this.userRole = parseInt(sessionStorage.getItem('role') || '0');
+    this.rol = new BehaviorSubject<number>(this.userRole);
   }
   login(credentials: LoginRequest): Observable<any> {
     return this.http.post<any>(environment.urlHost + 'auth/login', credentials).pipe(
@@ -26,28 +28,31 @@ export class LoginService {
         sessionStorage.setItem('token', userData.token);
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
-        this.userRole = userData.role; 
-        console.log('Rol del usuario:', this.userRole); 
+        this.userRole = userData.rol;
+        this.rol.next(userData.role); // Actualizamos el valor de rol
+        console.log('Rol del usuario:', userData.rol);
       }),
       map((userData) => userData.token),
       catchError(this.handleError)
     );
   }
 
-  obtenerRol(credentials: LoginRequest): Observable<any>{
+  obtenerRol(credentials: LoginRequest): Observable<any> {
     return this.http.post<any>(environment.urlHost + 'auth/obtenerRol', credentials).pipe(
       tap((userData) => {
-        sessionStorage.setItem('role', userData.role);
-        this.userRole = userData.role; 
+        sessionStorage.setItem('role', userData.rol);
+        this.userRole = userData.rol;
+        this.rol.next(userData.rol); // Actualizamos el valor de rol
+        console.log(userData.rol)
       }),
-      map((userData) => userData.role),
+      map((userData) => userData.rol),
       catchError(this.handleError)
     );
   }
-  
 
   logout(): void {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('role'); // Remove role on logout
     this.currentUserLoginOn.next(false);
   }
 

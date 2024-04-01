@@ -10,7 +10,7 @@
   </div>
 
   <!-- Elementos condicionales dependiendo del estado de login -->
-  <ng-container *ngIf="userLoginOn">
+  <ng-container *ngIf="userLoginOn && userRol == 1">
     <div class="p-x-12 m-t-12">
       <a class="nav-link active" routerLink="/validar" routerLink="/inicio">Validar CFDIs</a>
     </div>
@@ -25,6 +25,35 @@
     </div>
   </ng-container>
 
+  <ng-container *ngIf="userLoginOn && userRol == 2">
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/validar" routerLink="/inicio">Registrar Usuario</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/inicio">Registrar Subsidiaria</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/inicio">Mis empleados</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" (click)="logoutUser()" routerLink="/">Cerrar Sesión</a>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="userLoginOn && userRol == 3">
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/validar" routerLink="/inicio">Registrar Empresa</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/inicio">Registrar Usuario</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" routerLink="/inicio">Mis estadisticas</a>
+    </div>
+    <div class="p-x-12 m-t-12">
+      <a class="nav-link active" (click)="logoutUser()" routerLink="/">Cerrar Sesión</a>
+    </div>
+  </ng-container>
   
 
  

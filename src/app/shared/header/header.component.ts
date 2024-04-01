@@ -9,8 +9,8 @@ import { LoginService } from 'src/app/services/auth/login.service';
 })
 export class HeaderComponent implements OnInit {
   userLoginOn: boolean = false;
-
-
+  userNav: String = "";
+  userRol?: number
   constructor(
     private loginService: LoginService,
    
@@ -22,9 +22,15 @@ export class HeaderComponent implements OnInit {
       this.userLoginOn = userLoginOn;
     });
 
-    
+    this.loginService.rol.subscribe((userRol)=>{
+      
+      this.userRol = userRol
+      console.log(userRol)
+    })
+
   } 
 
+  
   logoutUser() {
     this.loginService.logout();
     this.router.navigate(['/']);

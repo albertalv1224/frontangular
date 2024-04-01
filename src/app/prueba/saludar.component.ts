@@ -31,14 +31,14 @@ import { catchError, throwError } from "rxjs";
       const modulo = this.moduloValue;
       console.log(modulo)
     
-      this.http.post('http://localhost:8080/auth/prueba', { username: this.username, modulo })
+      this.http.post('http://localhost:8080/auth/datos', { username: this.username, modulo })
   
         .pipe(
   
           catchError(this.handleError) 
         )
         .subscribe((response) => {
-          console.log('Respuesta de la petición POST:', response);
+          console.log(response);
          
         });
     }

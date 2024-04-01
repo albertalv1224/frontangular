@@ -34,11 +34,10 @@ export class LoginComponent implements OnInit {
       this.loginError = "";
       this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
         next: () => {
-          
           this.loginService.obtenerRol(this.loginForm.value as LoginRequest).subscribe({
             next: () => {
-              
-              if (this.loginService.userRole === 'USER') {
+              if (this.loginService.userRole === 1) {
+          
                 this.router.navigateByUrl('/saludar');
               } else {
                 this.router.navigateByUrl('/register');
